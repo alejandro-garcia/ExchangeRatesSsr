@@ -3,15 +3,28 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from './src/app';
 import getFacts from './src/facts';
-import * as express from 'express';
+import express from 'express';
+import fs from 'fs';
+
+
+
+const pageUrl = __dirname.replace("functions", '') + 'public\\index.html';
+
+console.log("dirname..." + pageUrl);
+
+const index = fs.readFileSync(pageUrl, 'utf8');
 
 const app = express();
 
 app.get('**', (req, res) => {
   getFacts().then(facts=>{
     const html = renderToString(<App facts={facts}/>);
+    const finalHtml = index.replace('<!-- ::APP:: -->',html);
+    console.log("=== BEGIN: final HTML === ")
+    console.log(finalHtml);
+    console.log("=== END: final HTML === ")
     res.set('Cache-Control', 'public, max-age=600, s-maxage=1200');    
-    res.send(html);
+    res.send(finalHtml);
   });
 });
 
