@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "ExchangeRatesSsr",
+			"path": "ExchangeRatesSsr"
+		}
+	],
+   "settings": {}
+}
