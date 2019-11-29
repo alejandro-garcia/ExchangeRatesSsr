@@ -15,10 +15,12 @@
     <script type="text/javascript" src="bundle.js"></script>    
     <script type="text/javascript">
       document.addEventListener('readystatechange', function() {
-         var elems = document.querySelectorAll('select');
-         if (elems && elems.length != 0)
-           var instances = M.FormSelect.init(elems);
-           //var instances = M.Dropdown.init(elems);
+         // var elems = document.querySelectorAll('select');
+         // if (elems && elems.length != 0)
+         //   var instances = M.FormSelect.init(elems);
+
+         var nav = document.querySelectorAll('.sidenav');
+         var instances = M.Sidenav.init(nav);      
       });
     </script>
 </body>

@@ -73,17 +73,44 @@ function App(props) {
    var dates = props.facts.map(function (d) {
       return d.date;
    });
-   var uniqDates = ["todas"].concat(_toConsumableArray(new Set(dates))).map(function (v, i) {
+   //const uniqDates = ["todas", ...new Set(dates)].map((v,i)=>(<option key={i} value={v}>{v}</option>));
+   var uniqDates = [].concat(_toConsumableArray(new Set(dates))).map(function (v, i) {
       return _react2.default.createElement(
-         "option",
-         { key: i, value: v },
-         v
+         "li",
+         { key: i, id: "oneDate" },
+         _react2.default.createElement(
+            "a",
+            { href: "#" },
+            v
+         )
       );
    });
 
    return _react2.default.createElement(
       "div",
       { className: "container" },
+      _react2.default.createElement(
+         "nav",
+         null,
+         _react2.default.createElement(
+            "div",
+            { className: "nav-wrapper" },
+            _react2.default.createElement(
+               "ul",
+               { className: "left hide-on-med-and-down" },
+               _react2.default.createElement(
+                  "li",
+                  { className: "active" },
+                  _react2.default.createElement(
+                     "a",
+                     { id: "allDates", href: "#" },
+                     "Todas"
+                  )
+               ),
+               uniqDates
+            )
+         )
+      ),
       _react2.default.createElement("br", { style: { paddingBottom: '5px' } }),
       _react2.default.createElement(
          "ul",
@@ -95,24 +122,6 @@ function App(props) {
                "h4",
                null,
                "Actualizaci\xF3n de Tasa de Cambio por Restaurante"
-            ),
-            _react2.default.createElement(
-               "span",
-               null,
-               _react2.default.createElement(
-                  "strong",
-                  null,
-                  "Fecha de la Tasa:"
-               ),
-               _react2.default.createElement(
-                  "div",
-                  { className: "input-field col s12" },
-                  _react2.default.createElement(
-                     "select",
-                     { id: "ddlRateDates" },
-                     uniqDates
-                  )
-               )
             )
          ),
          facts

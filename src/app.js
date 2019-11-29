@@ -29,20 +29,23 @@ function App(props){
    //genero una lista unica de fechas segun los datos que llegan del json.
    //para facilitar el filtrado.
    const dates = props.facts.map(d => d.date);
-   const uniqDates = ["todas", ...new Set(dates)].map((v,i)=>(<option key={i} value={v}>{v}</option>));
+   //const uniqDates = ["todas", ...new Set(dates)].map((v,i)=>(<option key={i} value={v}>{v}</option>));
+   const uniqDates = [...new Set(dates)].map((v,i)=>(<li key={i} id="oneDate"><a href="#">{v}</a></li>));
    
    return (
-       <div className="container">               
+       <div className="container">       
+         <nav>
+            <div className="nav-wrapper">
+               {/* <a href="#!" className="brand-logo center">Logo</a> */}
+               <ul className="left hide-on-med-and-down">
+               <li className="active"><a id="allDates" href="#">Todas</a></li>
+               {uniqDates}               
+               </ul>
+            </div>
+         </nav>        
          <br style={{ paddingBottom: '5px'}}/>       
          <ul className="collection with-header">
             <li key="0" className="collection-header"><h4>Actualización de Tasa de Cambio por Restaurante</h4>
-               <span><strong>Fecha de la Tasa:</strong>
-                  <div className="input-field col s12">
-                     <select id='ddlRateDates'>         
-                        {uniqDates}
-                     </select>
-                  </div>  
-               </span>
             </li>
             {facts}
          </ul>
