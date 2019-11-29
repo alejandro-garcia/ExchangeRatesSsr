@@ -25,3 +25,23 @@ ul li {
   -ms-flex-align: center;
   align-items: center;
 }
+
+tbody tr:nth-child(odd){
+  background-color: #4C8BF5;
+  /* color: rgb(9, 108, 148); */
+}
+.centerAlign{
+  text-align: center;
+}
+.col2 {
+  width: 23%;
+}
+.col3{
+  width: 18%;
+}
+.col4{
+  width: 37%;
+}
+.col5{
+  width: 14%;
+}
