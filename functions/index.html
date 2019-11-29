@@ -14,13 +14,66 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script type="text/javascript" src="bundle.js"></script>    
     <script type="text/javascript">
-      document.addEventListener('readystatechange', function() {
-         // var elems = document.querySelectorAll('select');
-         // if (elems && elems.length != 0)
-         //   var instances = M.FormSelect.init(elems);
+      function getDatesNodeXpath(strDate) {
+        var searchPattern = "//li[@class='collection-item avatar']";
+        var headings = document.evaluate(searchPattern, document, null, XPathResult.ANY_TYPE, null);
+        var flag = true;
 
-         var nav = document.querySelectorAll('.sidenav');
-         var instances = M.Sidenav.init(nav);      
+        while (flag) {
+          var pObj = headings.iterateNext();
+          if (!pObj) {
+            flag = false;
+            break;
+          }
+          if (pObj.style.display == "none")
+            pObj.style.display = "";
+        }
+
+        if (strDate == "Todas")
+          return;
+
+        searchPattern = "//li[@class='collection-item avatar']/p[not(contains(.,'" + strDate + "'))]";
+        headings = document.evaluate(searchPattern, document, null, XPathResult.ANY_TYPE, null);
+
+        flag = true;
+        while (flag) {
+          var pObj = headings.iterateNext();
+          if (!pObj) {
+            flag = false;
+            break;
+          }
+          pObj.parentElement.style.display = "none";
+        }
+      }
+
+      function onNavClick(sender){
+        debugger;
+        console.log("sender", sender);
+
+        var activeNav = document.querySelector("ul li[class='active']");
+        if (activeNav)
+           activeNav.className = "";
+
+        sender.target.parentElement.className = "active";
+        
+        if (sender.target.text)
+          getDatesNodeXpath(sender.target.text);        
+      }
+
+      document.addEventListener('readystatechange', function() {
+        var nav = document.querySelectorAll('.sidenav');
+
+        if (nav){
+          var instances = M.Sidenav.init(nav);              
+          
+          document.querySelectorAll("li a.oneDate")
+           .forEach(f => {              
+               f.addEventListener("click", onNavClick);
+           });          
+
+          document.getElementById("#allDates")
+            .addEventListener("click", onNavClick);
+        }
       });
     </script>
 </body>

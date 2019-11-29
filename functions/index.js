@@ -63,7 +63,7 @@ app.get('**', function (req, res) {
     //console.log("=== BEGIN: final HTML === ")
     //console.log(finalHtml);
     //console.log("=== END: final HTML === ")
-    res.set('Cache-Control', 'public, max-age=600, s-maxage=1200');
+    res.set('Cache-Control', 'public, max-age=60, s-maxage=300');
     res.send(finalHtml);
   });
 });

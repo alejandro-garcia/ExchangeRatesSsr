@@ -30,19 +30,24 @@ function App(props){
    //para facilitar el filtrado.
    const dates = props.facts.map(d => d.date);
    //const uniqDates = ["todas", ...new Set(dates)].map((v,i)=>(<option key={i} value={v}>{v}</option>));
-   const uniqDates = [...new Set(dates)].map((v,i)=>(<li key={i} id="oneDate"><a href="#">{v}</a></li>));
+   const uniqDates = [...new Set(dates)].map((v,i)=>(<li key={v} id="oneDate"><a className="oneDate" href="#">{v}</a></li>));
    
    return (
        <div className="container">       
          <nav>
             <div className="nav-wrapper">
-               {/* <a href="#!" className="brand-logo center">Logo</a> */}
-               <ul className="left hide-on-med-and-down">
-               <li className="active"><a id="allDates" href="#">Todas</a></li>
-               {uniqDates}               
+               {/* <ul className="left hide-on-med-and-down"> */}
+               <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+               <ul className="right hide-on-med-and-down">
+                 <li className="active"><a id="allDates" href="#">Todas</a></li>
+                 {uniqDates}               
                </ul>
             </div>
          </nav>        
+         <ul className="sidenav" id="mobile-demo">
+            <li className="active"><a id="allDates" href="#">Todas</a></li>
+            {uniqDates}                           
+         </ul>
          <br style={{ paddingBottom: '5px'}}/>       
          <ul className="collection with-header">
             <li key="0" className="collection-header"><h4>Actualización de Tasa de Cambio por Restaurante</h4>

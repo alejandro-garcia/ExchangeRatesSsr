@@ -77,10 +77,10 @@ function App(props) {
    var uniqDates = [].concat(_toConsumableArray(new Set(dates))).map(function (v, i) {
       return _react2.default.createElement(
          "li",
-         { key: i, id: "oneDate" },
+         { key: v, id: "oneDate" },
          _react2.default.createElement(
             "a",
-            { href: "#" },
+            { className: "oneDate", href: "#" },
             v
          )
       );
@@ -96,8 +96,17 @@ function App(props) {
             "div",
             { className: "nav-wrapper" },
             _react2.default.createElement(
+               "a",
+               { href: "#", "data-target": "mobile-demo", className: "sidenav-trigger" },
+               _react2.default.createElement(
+                  "i",
+                  { className: "material-icons" },
+                  "menu"
+               )
+            ),
+            _react2.default.createElement(
                "ul",
-               { className: "left hide-on-med-and-down" },
+               { className: "right hide-on-med-and-down" },
                _react2.default.createElement(
                   "li",
                   { className: "active" },
@@ -110,6 +119,20 @@ function App(props) {
                uniqDates
             )
          )
+      ),
+      _react2.default.createElement(
+         "ul",
+         { className: "sidenav", id: "mobile-demo" },
+         _react2.default.createElement(
+            "li",
+            { className: "active" },
+            _react2.default.createElement(
+               "a",
+               { id: "allDates", href: "#" },
+               "Todas"
+            )
+         ),
+         uniqDates
       ),
       _react2.default.createElement("br", { style: { paddingBottom: '5px' } }),
       _react2.default.createElement(
