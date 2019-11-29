@@ -29,7 +29,7 @@ function App(props) {
 
       return _react2.default.createElement(
          "li",
-         { className: "collection-item avatar" },
+         { key: i, className: "collection-item avatar" },
          _react2.default.createElement(
             "i",
             { className: "material-icons circle green" },
@@ -73,10 +73,10 @@ function App(props) {
    var dates = props.facts.map(function (d) {
       return d.date;
    });
-   var uniqDates = ["todas"].concat(_toConsumableArray(new Set(dates))).map(function (v) {
+   var uniqDates = ["todas"].concat(_toConsumableArray(new Set(dates))).map(function (v, i) {
       return _react2.default.createElement(
          "option",
-         { value: v },
+         { key: i, value: v },
          v
       );
    });
@@ -90,7 +90,7 @@ function App(props) {
          { className: "collection with-header" },
          _react2.default.createElement(
             "li",
-            { className: "collection-header" },
+            { key: "0", className: "collection-header" },
             _react2.default.createElement(
                "h4",
                null,

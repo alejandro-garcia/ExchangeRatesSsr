@@ -15,7 +15,7 @@ function App(props){
        
        let estilo = (fact.flag) ?  'green': 'red';
        
-      return (<li className="collection-item avatar">
+      return (<li key={i} className="collection-item avatar">
          <i className="material-icons circle green">insert_chart</i>
          <span className="title"><strong>{fact.warehouse}</strong></span>
          <br/>
@@ -29,13 +29,13 @@ function App(props){
    //genero una lista unica de fechas segun los datos que llegan del json.
    //para facilitar el filtrado.
    const dates = props.facts.map(d => d.date);
-   const uniqDates = ["todas", ...new Set(dates)].map(v=>(<option value={v}>{v}</option>));
+   const uniqDates = ["todas", ...new Set(dates)].map((v,i)=>(<option key={i} value={v}>{v}</option>));
    
    return (
        <div className="container">               
          <br style={{ paddingBottom: '5px'}}/>       
          <ul className="collection with-header">
-            <li className="collection-header"><h4>Actualización de Tasa de Cambio por Restaurante</h4>
+            <li key="0" className="collection-header"><h4>Actualización de Tasa de Cambio por Restaurante</h4>
                <span><strong>Fecha de la Tasa:</strong>
                   <div className="input-field col s12">
                      <select id='ddlRateDates'>         
