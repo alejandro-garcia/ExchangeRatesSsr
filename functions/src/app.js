@@ -1,7 +1,7 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+   value: true
 });
 
 var _react = require("react");
@@ -14,130 +14,110 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function App(props) {
 
-    var facts = props.facts.map(function (fact, i) {
-        var rateHr = fact.modified ? fact.modified.split("T")[1] : "";
+   var facts = props.facts.map(function (fact, i) {
+      var rateHr = fact.modified ? fact.modified.split("T")[1] : "";
 
-        var updatedStr = "";
+      var updatedStr = "";
 
-        if (fact.updated) {
-            var updated = fact.updated.split("T");
-            var updatedDate = updated[0].split("-");
-            updatedStr = updatedDate[2] + "/" + updatedDate[1] + "/" + updatedDate[0] + " " + updated[1];
-        }
+      if (fact.updated) {
+         var updated = fact.updated.split("T");
+         var updatedDate = updated[0].split("-");
+         updatedStr = updatedDate[2] + "/" + updatedDate[1] + "/" + updatedDate[0] + " " + updated[1];
+      }
 
-        var estilo = fact.flag ? 'green' : 'red';
+      var estilo = fact.flag ? 'green' : 'red';
 
-        //<td>{fact.status}</td>
-        return _react2.default.createElement(
-            "tr",
-            null,
+      return _react2.default.createElement(
+         "li",
+         { className: "collection-item avatar" },
+         _react2.default.createElement(
+            "i",
+            { className: "material-icons circle green" },
+            "insert_chart"
+         ),
+         _react2.default.createElement(
+            "span",
+            { className: "title" },
             _react2.default.createElement(
-                "td",
-                null,
-                fact.warehouse
-            ),
-            _react2.default.createElement(
-                "td",
-                { className: "centerAlign" },
-                fact.date
-            ),
-            _react2.default.createElement(
-                "td",
-                { className: "centerAlign" },
-                rateHr
-            ),
-            _react2.default.createElement(
-                "td",
-                { className: "centerAlign" },
-                updatedStr
-            ),
-            _react2.default.createElement(
-                "td",
-                { style: { textAlign: 'center', color: estilo } },
-                fact.status
+               "strong",
+               null,
+               fact.warehouse
             )
-        );
-    });
-
-    //genero una lista unica de fechas segun los datos que llegan del json.
-    //para facilitar el filtrado.
-    var dates = props.facts.map(function (d) {
-        return d.date;
-    });
-    var uniqDates = ["todas"].concat(_toConsumableArray(new Set(dates))).map(function (v) {
-        return _react2.default.createElement(
-            "option",
-            { value: v },
-            v
-        );
-    });
-
-    return _react2.default.createElement(
-        "div",
-        null,
-        _react2.default.createElement(
-            "h2",
+         ),
+         _react2.default.createElement("br", null),
+         _react2.default.createElement(
+            "p",
             null,
-            "Actualizaci\xF3n de Tasa de Cambio por Restaurante"
-        ),
-        _react2.default.createElement(
-            "h4",
-            { style: { textAlign: 'center', paddingRight: '40%' } },
+            "Fecha/Hora tasa: ",
+            fact.date,
+            " ",
+            rateHr,
+            _react2.default.createElement("br", null),
+            "Actualizado: ",
+            updatedStr
+         ),
+         _react2.default.createElement(
+            "a",
+            { href: "#!", className: "secondary-content" },
             _react2.default.createElement(
-                "strong",
-                null,
-                "Fecha de la Tasa:"
+               "i",
+               { className: "material-icons" },
+               "grade"
+            )
+         )
+      );
+   });
+
+   //genero una lista unica de fechas segun los datos que llegan del json.
+   //para facilitar el filtrado.
+   var dates = props.facts.map(function (d) {
+      return d.date;
+   });
+   var uniqDates = ["todas"].concat(_toConsumableArray(new Set(dates))).map(function (v) {
+      return _react2.default.createElement(
+         "option",
+         { value: v },
+         v
+      );
+   });
+
+   return _react2.default.createElement(
+      "div",
+      { className: "container" },
+      _react2.default.createElement("br", { style: { paddingBottom: '5px' } }),
+      _react2.default.createElement(
+         "ul",
+         { className: "collection with-header" },
+         _react2.default.createElement(
+            "li",
+            { className: "collection-header" },
+            _react2.default.createElement(
+               "h4",
+               null,
+               "Actualizaci\xF3n de Tasa de Cambio por Restaurante"
             ),
             _react2.default.createElement(
-                "select",
-                { id: "ddlRateDates" },
-                uniqDates
+               "span",
+               null,
+               _react2.default.createElement(
+                  "strong",
+                  null,
+                  "Fecha de la Tasa:"
+               ),
+               _react2.default.createElement(
+                  "div",
+                  { className: "input-field col s12" },
+                  _react2.default.createElement(
+                     "select",
+                     { id: "ddlRateDates" },
+                     uniqDates
+                  )
+               )
             )
-        ),
-        _react2.default.createElement("br", { style: { paddingBottom: '5px' } }),
-        _react2.default.createElement(
-            "table",
-            null,
-            _react2.default.createElement(
-                "tHead",
-                null,
-                _react2.default.createElement(
-                    "tr",
-                    null,
-                    _react2.default.createElement(
-                        "th",
-                        null,
-                        "Rest."
-                    ),
-                    _react2.default.createElement(
-                        "th",
-                        { className: "col2" },
-                        "Fecha"
-                    ),
-                    _react2.default.createElement(
-                        "th",
-                        { className: "col3" },
-                        "Hora"
-                    ),
-                    _react2.default.createElement(
-                        "th",
-                        { className: "col4" },
-                        "Actualizado el."
-                    ),
-                    _react2.default.createElement(
-                        "th",
-                        { className: "col5" },
-                        "status"
-                    )
-                )
-            ),
-            _react2.default.createElement(
-                "tbody",
-                null,
-                facts
-            )
-        )
-    );
+         ),
+         facts
+      )
+   );
 }
 
 exports.default = App;

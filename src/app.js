@@ -15,46 +15,37 @@ function App(props){
        
        let estilo = (fact.flag) ?  'green': 'red';
        
-       //<td>{fact.status}</td>
-       return (<tr>
-                <td>{fact.warehouse}</td>
-                <td className="centerAlign">{fact.date}</td>
-                <td className="centerAlign">{rateHr}</td>
-                <td className="centerAlign">{updatedStr}</td>
-                <td style={{ textAlign: 'center', color: estilo }}>{fact.status}</td>
-              </tr>
-        );
+      return (<li className="collection-item avatar">
+         <i className="material-icons circle green">insert_chart</i>
+         <span className="title"><strong>{fact.warehouse}</strong></span>
+         <br/>
+         <p>Fecha/Hora tasa: {fact.date} {rateHr}<br/>
+            Actualizado: {updatedStr}
+         </p>
+         <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a>
+      </li>);
     });
 
    //genero una lista unica de fechas segun los datos que llegan del json.
    //para facilitar el filtrado.
    const dates = props.facts.map(d => d.date);
    const uniqDates = ["todas", ...new Set(dates)].map(v=>(<option value={v}>{v}</option>));
-
+   
    return (
-       <div>
-            <h2>Actualización de Tasa de Cambio por Restaurante</h2>
-            <h4 style={{ textAlign: 'center', paddingRight: '40%' }}>
-               <strong>Fecha de la Tasa:</strong>
-               <select id="ddlRateDates">
-                {uniqDates}
-               </select>
-            </h4>
-            <br style={{ paddingBottom: '5px'}}/>       
-            <table>           
-                <tHead>
-                    <tr>
-                        <th>Rest.</th>           
-                        <th className="col2">Fecha</th>
-                        <th className="col3">Hora</th>
-                        <th className="col4">Actualizado el.</th>
-                        <th className="col5">status</th>
-                    </tr>
-                </tHead>
-                <tbody>
-                    {facts}
-                </tbody>           
-            </table>
+       <div className="container">               
+         <br style={{ paddingBottom: '5px'}}/>       
+         <ul className="collection with-header">
+            <li className="collection-header"><h4>Actualización de Tasa de Cambio por Restaurante</h4>
+               <span><strong>Fecha de la Tasa:</strong>
+                  <div className="input-field col s12">
+                     <select id='ddlRateDates'>         
+                        {uniqDates}
+                     </select>
+                  </div>  
+               </span>
+            </li>
+            {facts}
+         </ul>
        </div>
    )
 }
