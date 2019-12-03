@@ -19,6 +19,7 @@ function getFacts() {
      }).then(function (facts) {
           var ratesInfo = facts[0];
           var dtStr = Object.keys(ratesInfo).sort().pop();
+          //TODO: implementar esto usando moment.js
           dtStr = dtStr.substr(6, 2) + '/' + dtStr.substr(4, 2) + "/" + dtStr.substr(0, 4);
           var whData = facts[1];
           var warehouses = Object.keys(whData).map(function (f) {

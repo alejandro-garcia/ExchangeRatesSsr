@@ -25,15 +25,16 @@ function App(props) {
          updatedStr = updatedDate[2] + "/" + updatedDate[1] + "/" + updatedDate[0] + " " + updated[1];
       }
 
-      var estilo = fact.flag ? 'green' : 'red';
+      var iconStyle = fact.flag ? fact.flagUpdated ? ' green' : '' : ' red';
+      var iconName = fact.flag ? fact.flagUpdated ? 'insert_chart' : 'folder' : 'play_arrow';
 
       return _react2.default.createElement(
          "li",
          { key: i, className: "collection-item avatar" },
          _react2.default.createElement(
             "i",
-            { className: "material-icons circle green" },
-            "insert_chart"
+            { className: "material-icons circle" + iconStyle },
+            iconName
          ),
          _react2.default.createElement(
             "span",

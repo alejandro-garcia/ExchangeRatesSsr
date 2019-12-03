@@ -13,10 +13,11 @@ function App(props){
           updatedStr = updatedDate[2] + "/" + updatedDate[1] + "/" + updatedDate[0] + " " + updated[1];
        }
        
-       let estilo = (fact.flag) ?  'green': 'red';
+      let iconStyle =  (fact.flag) ? ((fact.flagUpdated) ?  ' green': ''): ' red';
+      let iconName =   (fact.flag) ? ((fact.flagUpdated) ?  'insert_chart': 'folder'): 'play_arrow';
        
       return (<li key={i} className="collection-item avatar">
-         <i className="material-icons circle green">insert_chart</i>
+         <i className={`material-icons circle${iconStyle}`}>{iconName}</i>
          <span className="title"><strong>{fact.warehouse}</strong></span>
          <br/>
          <p>Fecha/Hora tasa: {fact.date} {rateHr}<br/>

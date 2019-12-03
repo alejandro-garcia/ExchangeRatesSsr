@@ -62,6 +62,8 @@
 
       if (sender.target.text)
         getDatesNodeXpath(sender.target.text);
+
+      return false;
     }
 
     document.addEventListener('readystatechange', function () {
@@ -69,6 +71,8 @@
 
       if (nav) {
         var instances = M.Sidenav.init(nav);
+
+        console.log("dentro de binding click event");
 
         document.querySelectorAll("li a.oneDate")
           .forEach(f => {
